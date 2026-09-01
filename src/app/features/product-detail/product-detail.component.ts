@@ -19,7 +19,7 @@ import { CartFeedback } from '../../core/utils/cart-feedback';
 })
 export class ProductDetailComponent {
   private readonly visualAnimationDuration = 320;
-  private readonly productAnimationDuration = 420;
+  private readonly productAnimationDuration = 260;
   private readonly viewerCloseDuration = 190;
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
