@@ -1,7 +1,7 @@
 import { Product } from '../models/product';
 
 const productImage = (slug: string, file: string, alt: string, role: 'primary' | 'gallery' | 'detail' | 'lifestyle' = 'primary') => ({
-  src: `/images/products/${slug}/${file}`,
+  src: `images/products/${slug}/${file}`,
   alt,
   role,
 });
