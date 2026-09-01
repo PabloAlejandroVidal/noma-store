@@ -1,0 +1,14 @@
+.scrim { position: fixed; z-index: 30; inset: 0; border: 0; background: rgb(24 23 20 / 32%); cursor: default; animation: scrim-in .18s ease-out both; }.drawer { position: fixed; z-index: 31; inset: 0 0 0 auto; display: flex; flex-direction: column; width: min(31rem, 100%); padding: 1.8rem; background: var(--canvas); box-shadow: -1rem 0 3rem rgb(24 23 20 / 12%); animation: drawer-enter .24s ease-out; }.drawer header { display: flex; justify-content: space-between; align-items: center; }.drawer h2 { font-size: 1.2rem; }.drawer header button { border: 0; background: none; font-size: 2rem; line-height: 1; cursor: pointer; }.lines { flex: 1; overflow: auto; margin-top: 2rem; }.line { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); }.line h3 { font-size: .92rem; }.line p, .remove { margin-top: .4rem; color: var(--muted); font-size: .8rem; }.line-actions { display: grid; justify-items: end; gap: .5rem; }.quantity { display: flex; gap: .65rem; align-items: center; }.quantity button, .remove { border: 0; background: none; cursor: pointer; }.remove { text-decoration: underline; }.drawer footer { border-top: 1px solid var(--ink); padding-top: 1rem; }.drawer footer div { display: flex; justify-content: space-between; margin-bottom: 1rem; }.empty { display: grid; flex: 1; place-content: center; gap: 1rem; text-align: center; }.empty p { max-width: 16rem; color: var(--muted); } @keyframes drawer-enter { from { transform: translateX(100%); } } @keyframes scrim-in { from { opacity: 0; } } @media (prefers-reduced-motion: reduce) { .drawer, .scrim { animation-duration: .01ms; } }
+.line { align-items: start; }
+.line h3 { margin: 0; }
+.line__details { display: grid; gap: .5rem; min-width: 0; }
+.line__pricing { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem; max-width: 100%; margin-top: .4rem; color: var(--muted); font-size: .8rem; }
+.line__pricing { margin-top: 0; }
+.line-total { color: var(--ink); font-weight: 600; }
+.line-actions { flex: 0 0 auto; }
+.line-actions .remove { margin-top: 0; }
+@media (max-width: 600px) {
+  .drawer { padding: 1.4rem; }
+  .line { gap: .75rem; }
+  .line__pricing { column-gap: .25rem; }
+}

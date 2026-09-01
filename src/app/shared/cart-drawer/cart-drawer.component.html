@@ -1,0 +1,14 @@
+@if (cart.isOpen()) {
+  <button class="scrim" type="button" (click)="cart.close()" aria-label="Close shopping cart"></button>
+  <aside class="drawer" aria-label="Shopping cart" aria-modal="true" role="dialog">
+    <header><h2>Your cart</h2><button type="button" (click)="cart.close()" aria-label="Close shopping cart">×</button></header>
+    @if (cart.items().length) {
+      <div class="lines">
+        @for (line of cart.items(); track line.product.id) {
+          <article class="line"><div class="line__details"><h3>{{ line.product.name }}</h3><div class="line__pricing"><span class="unit-price">{{ line.product.price | currency:'USD':'symbol':'1.0-0' }}</span><span aria-hidden="true">×</span><span>{{ line.quantity }}</span><span aria-hidden="true">=</span><strong class="line-total">{{ cart.lineTotal(line) | currency:'USD':'symbol':'1.0-0' }}</strong></div></div><div class="line-actions"><div class="quantity"><button type="button" (click)="cart.updateQuantity(line.product.id, line.quantity - 1)" aria-label="Remove one {{ line.product.name }}">−</button><span>{{ line.quantity }}</span><button type="button" (click)="cart.updateQuantity(line.product.id, line.quantity + 1)" aria-label="Add one {{ line.product.name }}">+</button></div><button class="remove" type="button" (click)="cart.remove(line.product.id)">Remove item</button></div></article>
+        }
+      </div>
+      <footer><div><span>Subtotal</span><strong>{{ cart.subtotal() | currency:'USD':'symbol':'1.0-0' }}</strong></div><button type="button" class="button button--dark" (click)="cart.close()">Continue browsing</button></footer>
+    } @else { <div class="empty"><p>Your selection is waiting to take shape.</p><button type="button" class="button button--dark" (click)="cart.close()">Discover collection</button></div> }
+  </aside>
+}

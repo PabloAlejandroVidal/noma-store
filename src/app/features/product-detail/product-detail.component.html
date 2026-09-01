@@ -1,0 +1,58 @@
+@if (product(); as item) {
+  <section class="product-viewer" [class.product-viewer--closing]="isClosing()" aria-labelledby="product-title" role="dialog" aria-modal="true">
+    <div class="viewer__inner">
+      <header class="viewer__topbar">
+        <button class="viewer__wordmark" type="button" (click)="close()" aria-label="Close product viewer">NOMA</button>
+        <button class="viewer__close" type="button" (click)="close()" aria-label="Close product viewer">×</button>
+      </header>
+
+      <div class="viewer__body" [class.viewer__body--next]="productMotion() === 'next'" [class.viewer__body--previous]="productMotion() === 'previous'">
+        <div class="viewer__visual" aria-live="polite">
+          @if (previousImage(); as departingImage) { <div class="product-image product-image--leaving" aria-hidden="true"><app-product-visual [image]="departingImage" /></div> }
+          @if (activeImage(); as currentImage) { <div class="product-image" [class.product-image--entering]="isVisualTransitioning()"><app-product-visual [image]="currentImage" /></div> }
+          @if (images().length > 1) {
+            <div class="viewer__image-controls" aria-label="Product images">
+              @for (image of images(); track image.src; let galleryIndex = $index) {
+                <button class="image-dot" type="button" [class.is-active]="galleryIndex === imageIndex()" (click)="selectImage(galleryIndex)" [attr.aria-label]="'Show image ' + (galleryIndex + 1) + ' of ' + item.name"></button>
+              }
+            </div>
+          }
+        </div>
+
+        <aside class="viewer__information">
+          <p class="eyebrow">Collection · Quiet Forms</p>
+          <p class="viewer__counter">{{ (productPosition() + 1).toString().padStart(2, '0') }} / {{ catalog.products.length.toString().padStart(2, '0') }}</p>
+          <h1 id="product-title">{{ item.name }}</h1>
+          <p class="product__description">{{ item.description }}</p>
+          <p class="product__material">{{ item.materials.join(' · ') }}</p>
+          <p class="product__price">{{ item.price | currency:item.currency:'symbol':'1.0-0' }}</p>
+
+          <div class="purchase">
+            <div class="quantity" aria-label="Quantity">
+              <button type="button" (click)="updateQuantity(-1)" aria-label="Decrease quantity">−</button>
+              <span>{{ quantity() }}</span>
+              <button type="button" (click)="updateQuantity(1)" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="button button--dark cart-action" type="button" [class.is-added]="feedback.isAdded()" (click)="addToCart()">ADD TO CART</button>
+          </div>
+
+          <nav class="viewer__product-nav" aria-label="Product navigation">
+            <button type="button" (click)="navigateProduct('previous')" [attr.aria-label]="'Previous product: ' + previousProduct()?.name">← <span>Previous</span></button>
+            <button type="button" (click)="navigateProduct('next')" [attr.aria-label]="'Next product: ' + nextProduct()?.name"><span>Next</span> →</button>
+          </nav>
+        </aside>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="product-viewer product-viewer--missing" [class.product-viewer--closing]="isClosing()" role="dialog" aria-modal="true" aria-labelledby="missing-title">
+    <div class="viewer__inner">
+      <header class="viewer__topbar">
+        <button class="viewer__wordmark" type="button" (click)="close()" aria-label="Close product viewer">NOMA</button>
+        <button class="viewer__close" type="button" (click)="close()" aria-label="Close product viewer">×</button>
+      </header>
+      <div class="missing"><h1 id="missing-title">This object is no longer in the collection.</h1><button class="button button--dark" type="button" (click)="close()">Return to collection</button></div>
+    </div>
+  </section>
+}
+@if (feedback.toastMessage(); as message) { <p class="cart-toast" [class.cart-toast--leaving]="feedback.isToastLeaving()" role="status" aria-live="polite">{{ message }}</p> }

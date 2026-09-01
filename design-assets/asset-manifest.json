@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "design_system": "../../noma-design-system.json",
+  "source_asset_root": "../../",
+  "products": [
+    {
+      "product_id": "arc_lounge_chair",
+      "slug": "arc-lounge-chair",
+      "canonical": {
+        "status": "candidate",
+        "file": "Codex Image Sep 1, 2026, 12_13_18 AM.png"
+      },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "Codex Image Sep 1, 2026, 12_13_18 AM.png", "classification": "canonical_candidate", "shot": "front_three_quarter" },
+        { "file": "Codex Image Aug 31, 2026, 10_29_09 PM.png", "classification": "rejected_design_variation", "reason": "The timber arms and outer structure do not read as the required continuous curved frame." },
+        { "file": "Codex Image Aug 31, 2026, 10_34_37 PM.png", "classification": "rejected_design_variation", "reason": "The upholstered shell replaces the required exposed timber frame and separate back pad." },
+        { "file": "Codex Image Aug 31, 2026, 10_35_48 PM.png", "classification": "rejected_design_variation", "reason": "The back and timber structure change the required continuous frame geometry." },
+        { "file": "Codex Image Aug 31, 2026, 11_53_00 PM.png", "classification": "rejected_design_variation", "reason": "The campaign chair uses a different enclosing timber and upholstered-back construction." }
+      ]
+    },
+    {
+      "product_id": "line_dining_chair",
+      "slug": "line-dining-chair",
+      "canonical": { "status": "candidate", "file": "Codex Image Aug 31, 2026, 10_43_03 PM.png" },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "Codex Image Aug 31, 2026, 10_43_03 PM.png", "classification": "canonical_candidate", "shot": "front_view", "note": "A near-frontal view, but sufficiently clear to read the curved backrest, open gap, thin seat and four slender timber legs." }
+      ]
+    },
+    {
+      "product_id": "slab_coffee_table",
+      "slug": "slab-coffee-table",
+      "canonical": { "status": "candidate", "file": "products/slab-coffee-table/canonical-candidate.png" },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "products/slab-coffee-table/canonical-candidate.png", "classification": "canonical_candidate", "shot": "canonical_master", "note": "Generated front three-quarter master; the two recessed monolithic supports, low horizontal proportions and honed beige travertine are clearly readable." },
+        { "file": "Codex Image Aug 31, 2026, 10_35_00 PM.png", "classification": "lifestyle_candidate", "shot": "editorial_hero", "reason": "The travertine material and low rounded volume are useful, but the two recessed supports are not readable enough to lock the construction." },
+        { "file": "Codex Image Aug 31, 2026, 11_49_58 PM.png", "classification": "lifestyle_candidate", "shot": "interior_context", "reason": "A multi-product campaign scene; unsuitable for reading the table construction as a canonical reference." }
+      ]
+    },
+    {
+      "product_id": "mono_side_table",
+      "slug": "mono-side-table",
+      "canonical": { "status": "candidate", "file": "Codex Image Aug 31, 2026, 10_43_51 PM.png" },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "Codex Image Aug 31, 2026, 10_43_51 PM.png", "classification": "canonical_candidate", "shot": "front_three_quarter" },
+        { "file": "Codex Image Aug 31, 2026, 10_42_45 PM.png", "classification": "rejected_design_variation", "reason": "The pronounced separate top collar breaks the required single continuous-volume construction." }
+      ]
+    },
+    {
+      "product_id": "low_sofa",
+      "slug": "low-sofa",
+      "canonical": { "status": "candidate", "file": "products/low-sofa/canonical-candidate.png" },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "products/low-sofa/canonical-candidate.png", "classification": "canonical_candidate", "shot": "canonical_master", "note": "Generated front three-quarter master; low horizontal profile, deep seat, integrated low arms and recessed base are readable in sand linen." },
+        { "file": "Codex Image Aug 31, 2026, 10_45_34 PM.png", "classification": "rejected_design_variation", "reason": "The chaise-like sectional composition is explicitly forbidden." },
+        { "file": "Codex Image Aug 31, 2026, 10_47_48 PM.png", "classification": "rejected_design_variation", "reason": "Loose decorative cushions are forbidden and the upholstery composition does not preserve the specified calm single platform." }
+      ]
+    },
+    {
+      "product_id": "veil_floor_lamp",
+      "slug": "veil-floor-lamp",
+      "canonical": { "status": "candidate", "file": "Codex Image Aug 31, 2026, 10_52_11 PM.png" },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "Codex Image Aug 31, 2026, 10_52_11 PM.png", "classification": "canonical_candidate", "shot": "front_view" },
+        { "file": "Codex Image Aug 31, 2026, 10_55_45 PM.png", "classification": "rejected_design_variation", "reason": "The tall cylindrical shade replaces the required wide shallow linen shade." }
+      ]
+    },
+    {
+      "product_id": "frame_mirror",
+      "slug": "frame-mirror",
+      "canonical": { "status": "candidate", "file": "Codex Image Aug 31, 2026, 11_23_21 PM.png" },
+      "generation_need": "no_immediate_generation_required",
+      "assets": [
+        { "file": "Codex Image Aug 31, 2026, 11_23_21 PM.png", "classification": "canonical_candidate", "shot": "front_three_quarter" },
+        { "file": "Codex Image Aug 31, 2026, 11_56_05 PM.png", "classification": "lifestyle_candidate", "shot": "interior_context", "reason": "The mirror is contextual rather than fully readable, but its thin dark timber frame and softened silhouette remain consistent." }
+      ]
+    },
+    {
+      "product_id": "column_table_lamp",
+      "slug": "column-table-lamp",
+      "canonical": { "status": "candidate", "file": "products/column-table-lamp/canonical-candidate.png" },
+      "generation_need": "derived_shots_only",
+      "assets": [
+        { "file": "products/column-table-lamp/canonical-candidate.png", "classification": "canonical_candidate", "shot": "canonical_master", "note": "Generated front three-quarter master; compact centered proportions, cylindrical limestone base and simple ivory linen shade are clearly readable." },
+        { "file": "Codex Image Aug 31, 2026, 11_49_06 PM.png", "classification": "rejected_design_variation", "reason": "The fluted multi-part base does not match the immutable solid cylindrical column." },
+        { "file": "Codex Image Aug 31, 2026, 11_56_05 PM.png", "classification": "lifestyle_candidate", "shot": "interior_context", "reason": "The lamp is too small and partly contextual to lock base and shade geometry." }
+      ]
+    }
+  ],
+  "unrelated_assets": [
+    {
+      "file": "Codex Image Aug 31, 2026, 11_49_58 PM.png",
+      "classification": "lifestyle_candidate",
+      "reason": "Useful only as a multi-product Quiet Forms campaign reference; individual product geometry is not sufficiently readable."
+    }
+  ]
+}

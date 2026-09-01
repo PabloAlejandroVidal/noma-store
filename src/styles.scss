@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --canvas: #f4f2ec;
+  --ink: #1b1b19;
+  --muted: #696861;
+  --line: #d5d3cc;
+  --header-height: 4.5rem;
+  --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
+  color: var(--ink);
+  background: var(--canvas);
+  font-family: Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--canvas); }
+body { min-width: 20rem; margin: 0; background: var(--canvas); }
+button, input { font: inherit; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.button { min-height: 2.8rem; border: 1px solid var(--ink); padding: .75rem 1.2rem; cursor: pointer; font-size: .8rem; }
+.button--dark { background: var(--ink); color: var(--canvas); }
+.button--dark:hover { background: color-mix(in srgb, var(--ink) 88%, white); }
+.button--dark:active { transform: scale(.98); }
+.cart-action:active { transform: scale(.98); transition-duration: 100ms; }
+.cart-action.is-added { opacity: .86; box-shadow: 0 .12rem .35rem rgb(24 23 20 / 8%); }
+.button--dark.cart-action.is-added { opacity: 1; background: color-mix(in srgb, var(--ink) 92%, white); box-shadow: 0 .12rem .35rem rgb(24 23 20 / 10%); }
+.product-viewer app-product-visual .product-visual { background: transparent; }
+.product-viewer app-product-visual img { object-fit: cover; }
+.collection app-product-visual img,
+.collection .peek app-product-visual img { object-fit: cover; }
+.cart-toast { position: fixed; z-index: 15; right: max(1.25rem, calc(env(safe-area-inset-right) + 1rem)); bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem)); width: max-content; max-width: min(26rem, calc(100vw - 2.5rem)); border: 1px solid color-mix(in srgb, var(--line) 82%, var(--canvas)); border-radius: .35rem; padding: .65rem .9rem; background: color-mix(in srgb, var(--canvas) 96%, white); box-shadow: 0 .45rem 1rem rgb(24 23 20 / 8%); color: var(--ink); font-size: .78rem; line-height: 1.3; pointer-events: none; animation: cart-toast-enter .18s ease-out both; }
+.cart-toast--leaving { animation-name: cart-toast-exit; animation-timing-function: ease-in; }
+@keyframes cart-toast-enter { from { opacity: 0; transform: translateY(.35rem); } }
+@keyframes cart-toast-exit { to { opacity: 0; transform: translateY(.2rem); } }
+@media (prefers-reduced-motion: no-preference) {
+  a, button { transition: color .18s ease, background-color .18s ease, opacity .18s ease, transform .18s ease; }
+}
+
+@media (max-width: 600px) {
+  .cart-toast { right: auto; left: 50%; bottom: max(1rem, calc(env(safe-area-inset-bottom) + .75rem)); transform: translateX(-50%); max-width: calc(100vw - 2rem); }
+  @keyframes cart-toast-enter { from { opacity: 0; transform: translate(-50%, .35rem); } }
+  @keyframes cart-toast-exit { to { opacity: 0; transform: translate(-50%, .2rem); } }
+}
+
+@supports (view-transition-name: noma-content) {
+  /* Keep the snapshot box fixed; only the incoming view carries direction. */
+  ::view-transition-group(noma-content) { animation: none; }
+  ::view-transition-image-pair(noma-content) { isolation: isolate; }
+  html[data-route-direction='forward']::view-transition-old(noma-content) { animation: route-leave-fade 220ms ease-out both; }
+  html[data-route-direction='forward']::view-transition-new(noma-content) { animation: route-enter-right 520ms cubic-bezier(.22, .61, .36, 1) both; }
+  html[data-route-direction='back']::view-transition-old(noma-content) { animation: route-leave-fade 220ms ease-out both; }
+  html[data-route-direction='back']::view-transition-new(noma-content) { animation: route-enter-left 520ms cubic-bezier(.22, .61, .36, 1) both; }
+}
+
+@keyframes route-leave-fade { from { opacity: 1; } to { opacity: 0; } }
+@keyframes route-enter-right { from { opacity: .12; transform: translateX(6%); } to { opacity: 1; transform: translateX(0); } }
+@keyframes route-enter-left { from { opacity: .12; transform: translateX(-6%); } to { opacity: 1; transform: translateX(0); } }
+
+.feature--incoming-next { animation: product-enter-right .48s cubic-bezier(.22, .61, .36, 1) both; }
+.feature--outgoing-next { animation: product-leave-left .48s cubic-bezier(.22, .61, .36, 1) both; }
+.feature--incoming-previous { animation: product-enter-left .48s cubic-bezier(.22, .61, .36, 1) both; }
+.feature--outgoing-previous { animation: product-leave-right .48s cubic-bezier(.22, .61, .36, 1) both; }
+.feature--incoming-fade { animation: product-fade-in .32s ease-out both; }
+.feature--outgoing-fade { animation: product-fade-out .28s ease-in both; }
+@keyframes product-enter-right { from { opacity: 0; transform: translateX(12%); } }
+@keyframes product-leave-left { to { opacity: 0; transform: translateX(-12%); } }
+@keyframes product-enter-left { from { opacity: 0; transform: translateX(-12%); } }
+@keyframes product-leave-right { to { opacity: 0; transform: translateX(12%); } }
+@keyframes product-fade-in { from { opacity: 0; } }
+@keyframes product-fade-out { to { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(noma-content), ::view-transition-old(noma-content), ::view-transition-new(noma-content) { animation-duration: .01ms !important; animation-delay: 0s !important; }
+  .feature--incoming-next, .feature--outgoing-next, .feature--incoming-previous, .feature--outgoing-previous, .feature--incoming-fade, .feature--outgoing-fade { animation-duration: .01ms; }
+  .cart-action:active { transform: none; }
+  .button--dark:active { transform: none; }
+  .cart-toast { animation-duration: .01ms; }
+}
