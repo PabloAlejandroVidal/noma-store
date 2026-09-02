@@ -1,5 +1,5 @@
 @if (product(); as item) {
-  <section class="product-viewer" [class.product-viewer--closing]="isClosing()" aria-labelledby="product-title" role="dialog" aria-modal="true">
+  <section #viewer class="product-viewer" [class.product-viewer--closing]="isClosing()" aria-labelledby="product-title" role="dialog" aria-modal="true">
     <div class="viewer__inner">
       <header class="viewer__topbar">
         <button class="viewer__wordmark" type="button" (click)="close()" aria-label="Close product viewer">NOMA</button>
@@ -36,16 +36,16 @@
             <button class="button button--dark cart-action" type="button" [class.is-added]="feedback.isAdded()" (click)="addToCart()">ADD TO CART</button>
           </div>
 
-          <nav class="viewer__product-nav" aria-label="Product navigation">
-            <button type="button" (click)="navigateProduct('previous')" [attr.aria-label]="'Previous product: ' + previousProduct()?.name">← <span>Previous</span></button>
-            <button type="button" (click)="navigateProduct('next')" [attr.aria-label]="'Next product: ' + nextProduct()?.name"><span>Next</span> →</button>
-          </nav>
         </aside>
       </div>
+      <nav class="viewer__product-nav" aria-label="Product navigation">
+        <button type="button" (click)="navigateProduct('previous')" [attr.aria-label]="'Previous product: ' + previousProduct()?.name">← <span>Previous</span></button>
+        <button type="button" (click)="navigateProduct('next')" [attr.aria-label]="'Next product: ' + nextProduct()?.name"><span>Next</span> →</button>
+      </nav>
     </div>
   </section>
 } @else {
-  <section class="product-viewer product-viewer--missing" [class.product-viewer--closing]="isClosing()" role="dialog" aria-modal="true" aria-labelledby="missing-title">
+  <section #viewer class="product-viewer product-viewer--missing" [class.product-viewer--closing]="isClosing()" role="dialog" aria-modal="true" aria-labelledby="missing-title">
     <div class="viewer__inner">
       <header class="viewer__topbar">
         <button class="viewer__wordmark" type="button" (click)="close()" aria-label="Close product viewer">NOMA</button>

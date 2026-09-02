@@ -37,6 +37,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-o
   a, button { transition: color .18s ease, background-color .18s ease, opacity .18s ease, transform .18s ease; }
 }
 
+@media (max-width: 560px) {
+  :root { --header-height: 6.5rem; }
+}
+
 @media (max-width: 600px) {
   .cart-toast { right: auto; left: 50%; bottom: max(1rem, calc(env(safe-area-inset-bottom) + .75rem)); transform: translateX(-50%); max-width: calc(100vw - 2rem); }
   @keyframes cart-toast-enter { from { opacity: 0; transform: translate(-50%, .35rem); } }

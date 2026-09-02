@@ -1,6 +1,7 @@
 <header class="header">
   <a class="wordmark" routerLink="/" aria-label="NOMA home">NOMA</a>
   <nav aria-label="Primary navigation">
+    <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="/collection" routerLinkActive="is-active">Collection</a>
     <a routerLink="/about" routerLinkActive="is-active">About</a>
   </nav>

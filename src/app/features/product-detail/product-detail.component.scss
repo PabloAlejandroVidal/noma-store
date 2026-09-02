@@ -3,6 +3,7 @@
   z-index: 25;
   inset: 0;
   overflow-y: auto;
+  scroll-snap-type: y proximity;
   background: var(--canvas);
   animation: viewer-open .22s ease-out both;
 }
@@ -14,7 +15,7 @@
 
 .viewer__inner {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100dvh;
   min-height: 100dvh;
   padding: max(.75rem, calc(env(safe-area-inset-top) + .5rem)) var(--page-gutter) max(1.25rem, calc(env(safe-area-inset-bottom) + .75rem));
@@ -25,6 +26,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: 3rem;
+  scroll-snap-align: start;
 }
 
 .viewer__wordmark,
@@ -58,6 +60,7 @@
   width: min(100%, 105rem);
   margin: 0 auto;
   padding: clamp(1rem, 4vh, 3rem) 0;
+  grid-row: 2;
 }
 
 .viewer__body--next,
@@ -99,11 +102,11 @@
 
 .image-dot.is-active { background: var(--ink); }
 
-.viewer__information { display: flex; flex-direction: column; max-width: 27rem; min-height: 0; }
+.viewer__information { max-width: 27rem; }
 .eyebrow,
 .product__material { color: var(--muted); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
 .viewer__counter { margin-top: .8rem; color: var(--muted); font-size: .72rem; }
-.product-viewer h1 { margin-top: .7rem; font-size: clamp(2.5rem, 5vw, 5.8rem); font-weight: 400; letter-spacing: -.07em; line-height: .9; }
+.product-viewer h1 { min-block-size: 2.1em; margin-top: .7rem; font-size: clamp(2.5rem, 5vw, 5.8rem); font-weight: 400; letter-spacing: -.07em; line-height: 1.05; }
 .product__description { max-width: 27rem; margin-top: 1.5rem; font-size: .98rem; line-height: 1.45; }
 .product__material { margin-top: 1.2rem; }
 .product__price { margin-top: 1.8rem; font-size: 1.15rem; }
@@ -116,9 +119,12 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: auto;
+  grid-row: 3;
+  width: min(100%, 105rem);
+  margin: 0 auto;
   border-top: 1px solid var(--line);
   padding-top: .8rem;
+  scroll-snap-align: start;
 }
 
 .viewer__product-nav button {
@@ -141,8 +147,8 @@
 @keyframes visual-fade-out { to { opacity: 0; } }
 
 @media (max-width: 720px) {
-  .viewer__inner { height: auto; padding-right: 1.25rem; padding-left: 1.25rem; }
-  .viewer__body { grid-template-columns: 1fr; gap: 1.5rem; align-content: start; min-height: auto; padding-top: 1rem; }
+  .viewer__inner { grid-template-rows: auto auto auto; height: auto; padding-right: 1.25rem; padding-left: 1.25rem; }
+  .viewer__body { grid-template-columns: 1fr; gap: 1.5rem; align-content: start; min-height: auto; padding-top: 1rem; scroll-snap-align: start; }
   .viewer__visual { height: min(60dvh, 34rem); min-height: 18rem; }
   .viewer__information { max-width: none; }
   .product-viewer h1 { font-size: clamp(2.6rem, 13vw, 4.5rem); }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, effect, inject, signal, viewChild } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -39,6 +39,7 @@ export class ProductDetailComponent {
   protected readonly isVisualTransitioning = signal(false);
   protected readonly productMotion = signal<'next' | 'previous' | undefined>(undefined);
   protected readonly isClosing = signal(false);
+  private readonly viewer = viewChild<ElementRef<HTMLElement>>('viewer');
   protected readonly productPosition = computed(() => {
     const product = this.product();
     return product ? this.catalog.products.findIndex((candidate) => candidate.id === product.id) : -1;
@@ -56,6 +57,12 @@ export class ProductDetailComponent {
     this.imageIndex.set(0);
     this.previousImage.set(undefined);
     this.isVisualTransitioning.set(false);
+    const viewer = this.viewer()?.nativeElement;
+    if (viewer) viewer.scrollTop = 0;
+    window.setTimeout(() => {
+      const currentViewer = this.viewer()?.nativeElement;
+      if (currentViewer) currentViewer.scrollTop = 0;
+    }, 0);
   });
 
   protected updateQuantity(delta: number): void { this.quantity.update((quantity) => Math.max(1, quantity + delta)); }
