@@ -18,16 +18,16 @@
 
       <article class="feature" [class]="motion() ? 'feature feature--incoming feature--incoming-' + motion() : 'feature'" [attr.aria-label]="current().name">
         <a [routerLink]="['/product', current().slug]" class="feature__visual" [attr.aria-label]="'View ' + current().name"><app-product-visual [image]="currentImage()" /></a>
-        <div class="feature__meta"><div><h2>{{ current().name }}</h2><p class="description">{{ current().description }}</p></div><p class="price">{{ '$' + current().price }}</p></div>
+        <div class="feature__meta"><div><p class="eyebrow">{{ (index() + 1).toString().padStart(2, '0') }} / {{ products.length.toString().padStart(2, '0') }}</p><h2>{{ current().name }}</h2><p class="description">{{ current().description }}</p></div><p class="price">{{ '$' + current().price }}</p></div>
         <div class="feature__actions"><button class="cart-action" type="button" [class.is-added]="feedback.isAdded()" (click)="addCurrent()">ADD TO CART</button><a [routerLink]="['/product', current().slug]">View object <span aria-hidden="true">↗</span></a></div>
       </article>
     </div>
 
     <article class="peek peek--next" aria-hidden="true"><app-product-visual [image]="nextImage()" /><p>{{ next().name }}</p></article>
-    <div class="controls"><button type="button" (click)="move(-1)" aria-label="Previous product">←</button><button type="button" (click)="move(1)" aria-label="Next product">→</button></div>
   </div>
 
   <div class="collection__footer">
+    <div class="controls"><button type="button" (click)="move(-1)" aria-label="Previous product">←</button><button type="button" (click)="move(1)" aria-label="Next product">→</button></div>
     <div class="product-index" aria-label="Choose an object">
       @for (product of products; track product.id; let productIndex = $index) { <button type="button" [class.is-active]="productIndex === index()" (click)="select(productIndex)" [attr.aria-label]="'Show ' + product.name">{{ (productIndex + 1).toString().padStart(2, '0') }}</button> }
     </div>
